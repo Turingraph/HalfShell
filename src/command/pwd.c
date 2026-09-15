@@ -6,7 +6,7 @@
 /*   By: phsottat <phsottat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/14 17:44:38 by phsottat          #+#    #+#             */
-/*   Updated: 2026/09/15 15:43:32 by phsottat         ###   ########.fr       */
+/*   Updated: 2026/09/15 16:07:05 by phsottat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	command_pwd(const char *command)
 {
 	char	path[255];
 
-	if (is_2_str_same("pwd", command, 3) == true)
+	if (is_2_str_meansame("pwd", command) == true)
 	{
 		getcwd(path, sizeof(path));
 		write(1, path, f_strlen(path));

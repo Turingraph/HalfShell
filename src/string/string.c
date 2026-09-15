@@ -6,7 +6,7 @@
 /*   By: phsottat <phsottat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 13:31:36 by phsottat          #+#    #+#             */
-/*   Updated: 2026/09/15 14:01:21 by phsottat         ###   ########.fr       */
+/*   Updated: 2026/09/15 16:06:03 by phsottat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,37 @@ bool	is_2_str_same(const char *a, const char *b, size_t length)
 	while (a[i] != '\0' && i < length)
 	{
 		if (a[i] != b[i])
+			return (false);
+		i += 1;
+	}
+	return (true);
+}
+
+/**
+ * Check whether two strings contain the same text followed only by spaces.
+ * The first string must match the beginning of the second string exactly.
+ * Any remaining characters in the second string must be spaces.
+ * 
+ * time/space: O(n) / O(1)
+ * 
+ * status: public api
+ * 
+ * @param a string used as the expected prefix
+ * @param b string to compare against
+ * @return true if b contains a followed only by spaces, otherwise false
+ */
+bool	is_2_str_meansame(const char *a, const char *b)
+{
+	size_t	i;
+
+	if (is_2_str_same(a, b, f_strlen(a)) == false)
+		return (false);
+	if (b[f_strlen(a)] == '\0')
+		return (true);
+	i = 0;
+	while (b[f_strlen(a) + i] != '\0')
+	{
+		if (b[f_strlen(a) + i] != ' ')
 			return (false);
 		i += 1;
 	}

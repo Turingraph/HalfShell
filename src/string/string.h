@@ -6,7 +6,7 @@
 /*   By: phsottat <phsottat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 13:31:12 by phsottat          #+#    #+#             */
-/*   Updated: 2026/09/15 14:37:18 by phsottat         ###   ########.fr       */
+/*   Updated: 2026/09/15 16:06:39 by phsottat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ size_t	f_strlen(const char *str);
 bool	is_2_str_same(const char *a, const char *b, size_t length);
 bool	is_contains_n_as(const char *src, char a, size_t n);
 void	*malloc_talk(size_t elem_size, const char *comment);
+bool	is_2_str_meansame(const char *a, const char *b);
 
 #endif

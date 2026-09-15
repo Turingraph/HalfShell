@@ -6,7 +6,7 @@
 /*   By: phsottat <phsottat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 14:19:21 by phsottat          #+#    #+#             */
-/*   Updated: 2026/09/15 15:42:59 by phsottat         ###   ########.fr       */
+/*   Updated: 2026/09/15 16:07:15 by phsottat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,11 @@ int	main(void)
 	while (activate == 1)
 	{
 		command = readline("minishell $ ");
-		if (command == NULL)
-			break ;
-		else if (is_2_str_same("exit", command, 4) == true)
+		if (command == NULL || is_2_str_meansame("exit", command) == true)
 			activate = 0;
-		else if (is_2_str_same("echo ", command, 5) == true)
-			command_echo(command);
-		else if (is_2_str_same("pwd", command, 3) == true)
-			command_pwd(command);
+		command_cd(command);
+		command_echo(command);
+		command_pwd(command);
 		free(command);
 	}
 	return (0);
