@@ -6,7 +6,7 @@
 /*   By: phsottat <phsottat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/14 17:44:51 by phsottat          #+#    #+#             */
-/*   Updated: 2026/09/15 14:06:03 by phsottat         ###   ########.fr       */
+/*   Updated: 2026/09/15 14:54:24 by phsottat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,9 @@
 // echo.c
 
 void	command_echo(const char *str);
+
+// pwd.c
+
+void	command_pwd(const char *command);
 
 #endif

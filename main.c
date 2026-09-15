@@ -6,7 +6,7 @@
 /*   By: phsottat <phsottat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 14:19:21 by phsottat          #+#    #+#             */
-/*   Updated: 2026/09/15 14:39:47 by phsottat         ###   ########.fr       */
+/*   Updated: 2026/09/15 15:42:59 by phsottat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,12 @@ int	main(void)
 		command = readline("minishell $ ");
 		if (command == NULL)
 			break ;
-		else if (is_2_str_same("exit", command, 4))
+		else if (is_2_str_same("exit", command, 4) == true)
 			activate = 0;
-		else if (is_2_str_same("echo ", command, 5))
+		else if (is_2_str_same("echo ", command, 5) == true)
 			command_echo(command);
+		else if (is_2_str_same("pwd", command, 3) == true)
+			command_pwd(command);
 		free(command);
 	}
 	return (0);
@@ -34,5 +36,5 @@ int	main(void)
 
 /*
 cc -Wall -Wextra -Werror -lreadline main.c
-valgrind --leak-check=full --show-leak-kinds=all ./a.out
+valgrind --leak-check=full --show-leak-kinds=all ./halfshell
 */
