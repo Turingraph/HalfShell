@@ -52,7 +52,7 @@ size_t	f_strlen(const char *str)
  *
  * @return true if the strings match up to length, otherwise false
  */
-bool	is_2_str_same(const char *a, const char *b, size_t length)
+bool	is_2_str_same(const char *a, const char *b, size_t length, bool check_space)
 {
 	size_t	i;
 
@@ -67,73 +67,24 @@ bool	is_2_str_same(const char *a, const char *b, size_t length)
 			return (false);
 		i += 1;
 	}
-	return (true);
-}
-
-/**
- * Check whether two strings contain the same text followed only by spaces.
- * The first string must match the beginning of the second string exactly.
- * Any remaining characters in the second string must be spaces.
- * 
- * time/space: O(n) / O(1)
- * 
- * status: public api
- * 
- * @param a string used as the expected prefix
- * @param b string to compare against
- * @return true if b contains a followed only by spaces, otherwise false
- */
-bool	is_2_str_meansame(const char *a, const char *b)
-{
-	size_t	i;
-
-	if (is_2_str_same(a, b, f_strlen(a)) == false)
-		return (false);
-	if (b[f_strlen(a)] == '\0')
+	if (check_space == false)
 		return (true);
-	i = 0;
-	while (b[f_strlen(a) + i] != '\0')
-	{
-		if (b[f_strlen(a) + i] != ' ')
-			return (false);
-		i += 1;
-	}
-	return (true);
+	if (check_space == true && (b[i] == '\0' || b[i] == ' '))
+		return (true);
+	return (false);
 }
 
-/**
- * Check whether a character occurs exactly n times in a string.
- *
- * Returns false when src is NULL or empty.
- *
- * time/space: O(n) / O(1)
- *
- * status: public api
- *
- * @param src string to search
- * @param a character to count
- * @param n expected number of occurrences
- *
- * @return true if a occurs exactly n times in src, otherwise false
- */
-bool	is_contains_n_as(const char *src, char a, size_t n)
+// time : O(n)
+// space: O(1)
+bool	is_a_in_arr(char a, const char *arr)
 {
-	size_t	i;
-	size_t	y;
-
-	if (src == NULL || src[0] == '\0')
-		return (false);
-	y = 0;
-	i = 0;
-	while (src[i] != '\0')
+	while (arr != NULL && *arr != '\0')
 	{
-		if (src[i] == a)
-			y += 1;
-		i += 1;
+		if (*arr == a)
+			return (true);
+		arr += 1;
 	}
-	if (y != n)
-		return (false);
-	return (true);
+	return (false);
 }
 
 /**

@@ -11,11 +11,10 @@ CC = cc -Wall -Wextra -Werror
 
 # *** library ***
 
-LIBRARY = $(patsubst %, lib/%.a, command string)
-SRC_string = $(wildcard string/*.c)
-SRC_command = $(wildcard command/*.c)
-OBJ_string = $(patsubst %.c, obj/%.o, $(SRC_string))
-OBJ_command = $(patsubst %.c, obj/%.o, $(SRC_command)) $(OBJ_string)
+# I will have to fix this lines.
+LIBRARY = $(patsubst %, lib/%.a, src)
+SRC_src = $(wildcard src/*.c)
+OBJ_src = $(patsubst %.c, obj/%.o, $(SRC_src))
 
 #-----------------------------------------------------------------------------------------------
 # *** create library ***
