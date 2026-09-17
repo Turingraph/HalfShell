@@ -6,7 +6,7 @@
 /*   By: phsottat <phsottat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 13:31:36 by phsottat          #+#    #+#             */
-/*   Updated: 2026/09/17 14:54:19 by phsottat         ###   ########.fr       */
+/*   Updated: 2026/09/17 18:54:58 by phsottat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,15 +79,48 @@ bool	is_2_str_same(const char *a, const char *b,
 	return (false);
 }
 
-// time : O(n)
-// space: O(1)
-bool	is_a_in_arr(char a, const char *arr)
+/**
+ * Count how many character a in a string str.
+ *
+ * time/space: O(n) / O(1)
+ *
+ * status: public api
+ *
+ * @param str string to search
+ * @param a character to count
+ */
+size_t	how_many_a_in_str(const char *str, char a)
 {
-	while (arr != NULL && *arr != '\0')
+	size_t	i;
+	size_t	y;
+
+	if (str == NULL || str[0] == '\0')
+		return (false);
+	y = 0;
+	i = 0;
+	while (str[i] != '\0')
 	{
-		if (*arr == a)
+		if (str[i] == a)
+			y += 1;
+		i += 1;
+	}
+	return (y);
+}
+
+/**
+ * Check if string str contains character a
+ *
+ * time/space: O(n) / O(1)
+ *
+ * status: public api
+ */
+bool	is_a_in_str(char a, const char *str)
+{
+	while (str != NULL && *str != '\0')
+	{
+		if (*str == a)
 			return (true);
-		arr += 1;
+		str += 1;
 	}
 	return (false);
 }

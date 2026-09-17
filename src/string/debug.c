@@ -6,14 +6,22 @@
 /*   By: phsottat <phsottat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/17 12:31:38 by phsottat          #+#    #+#             */
-/*   Updated: 2026/09/17 12:32:30 by phsottat         ###   ########.fr       */
+/*   Updated: 2026/09/17 18:44:04 by phsottat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "string.h"
 
-// time : O(1)
-// space: O(1)
+/**
+ * Display total debugging score. Ideally, the score should equal to max_score.
+ *
+ * time/space: O(1) / O(1)
+ *
+ * status: public api
+ *
+ * @param score the actual score
+ * @param max_score the ideal score. Also score <= max_score.
+ */
 void	write_total_score(size_t score, size_t max_score)
 {
 	write(1, "Score: ", 8);
@@ -23,8 +31,15 @@ void	write_total_score(size_t score, size_t max_score)
 	write(1, "\n", 1);
 }
 
-// time : O(n)
-// space: O(n)
+/**
+ * Display that the file isn't exists.
+ *
+ * time/space: O(n) / O(1)
+ *
+ * status: public api
+ *
+ * @param src the name of the file
+ */
 void	warning_file_not_exists(const char *src)
 {
 	write(1, "Warning: ", 10);
