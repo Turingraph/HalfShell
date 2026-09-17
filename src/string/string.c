@@ -6,7 +6,7 @@
 /*   By: phsottat <phsottat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 13:31:36 by phsottat          #+#    #+#             */
-/*   Updated: 2026/09/15 16:06:03 by phsottat         ###   ########.fr       */
+/*   Updated: 2026/09/17 14:54:19 by phsottat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,18 @@ size_t	f_strlen(const char *str)
  *
  * @return true if the strings match up to length, otherwise false
  */
-bool	is_2_str_same(const char *a, const char *b, size_t length, bool check_space)
+bool	is_2_str_same(const char *a, const char *b,
+	size_t length, bool check_space)
 {
 	size_t	i;
 
 	if (a == NULL && b == NULL)
 		return (true);
 	if (a == NULL || b == NULL)
+		return (false);
+	if (*a == '\0' && *b == '\0')
+		return (true);
+	if (*a == '\0' || *b == '\0')
 		return (false);
 	i = 0;
 	while (a[i] != '\0' && i < length)

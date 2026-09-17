@@ -3,6 +3,7 @@
 # *** command ***
 
 CC = cc -Wall -Wextra -Werror
+BUFFER_SIZE = 42
 
 #-----------------------------------------------------------------------------------------------
 # https://stackoverflow.com/questions/9488256/use-directory-path-of-target-in-list-of-prerequisites-in-makefile
@@ -12,7 +13,7 @@ CC = cc -Wall -Wextra -Werror
 # *** library ***
 
 # I will have to fix this lines.
-LIBRARY = $(patsubst %, lib/%.a, string get_next_line parser)
+LIBRARY = $(patsubst %, lib/%.a, get_next_line parser string)
 SRC_string = $(wildcard string/*.c)
 OBJ_string = $(patsubst %.c, obj/%.o, $(SRC_string))
 SRC_get_next_line = $(wildcard get_next_line/*.c)
@@ -41,7 +42,7 @@ obj/%.o: %.c
 	@mkdir -p $(@D)
 	$(CC) -c $< -o $@
 
-obj/input/get_next_line/%.o: input/get_next_line/%.c
+obj/get_next_line/%.o: get_next_line/%.c
 	@mkdir -p $(@D)
 	$(CC) -D BUFFER_SIZE=$(BUFFER_SIZE) -c $< -o $@
 
