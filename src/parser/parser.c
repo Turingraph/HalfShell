@@ -6,7 +6,7 @@
 /*   By: phsottat <phsottat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/14 17:44:48 by phsottat          #+#    #+#             */
-/*   Updated: 2026/09/17 19:06:02 by phsottat         ###   ########.fr       */
+/*   Updated: 2026/09/17 19:12:05 by phsottat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,20 @@ size_t	word_out_quote(const char *str, int fd)
 	return (i);
 }
 
+/**
+ * Parse one word unit from a string.
+ * Skips leading spaces, then parses either a quoted or unquoted word.
+ *
+ * time/space: O(n) / O(1)
+ *
+ * status: public api (unfinished)
+ *
+ * @param str string to parse
+ * @param i current position in str; updated by the number of characters consumed
+ * @param fd file descriptor to write the parsed word to, or -1 to disable output
+ *
+ * @return true if a word unit was the last word successfully, otherwise false
+ */
 bool	parse_word_unit(const char *str, size_t *i, int fd)
 {
 	int		word_length;
@@ -120,6 +134,23 @@ bool	parse_word_unit(const char *str, size_t *i, int fd)
 	return (true);
 }
 
+/**
+ * Parse all word units contained in a string.
+ * Each successfully parsed word is separated by a space when fd is valid.
+ *
+ * Parsing stops when no more word units can be consumed or when an
+ * unclosed quoted word is encountered.
+ *
+ * time/space: O(n) / O(1)
+ *
+ * status: public api
+ *
+ * @param str string to parse
+ * @param fd file descriptor to write the parsed words to,
+ * or -1 to disable output
+ *
+ * @return number of successfully parsed word units
+ */
 size_t	parse_words(const char *str, int fd)
 {
 	size_t	y;
