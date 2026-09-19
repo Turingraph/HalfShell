@@ -46,8 +46,7 @@ size_t			index_a_in_str(const char *src, char a);
 // get_next_line.c
 
 void			fetch_text(int fd, t_dynamic_str *dst, size_t buffer_length);
-char			*get_next_line(int fd);
-// char			*get_next_line(int fd, bool is_continue, char stop_char);
+char			*get_next_line(int fd, bool is_continue, char stop_char);
 
 // open_dir_file.c
 

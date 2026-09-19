@@ -38,7 +38,7 @@ void	fetch_text(int fd, t_dynamic_str *dst, size_t buffer_length)
 	}
 }
 
-char	*get_next_line2(int fd, bool is_continue, char stop_char)
+char	*get_next_line(int fd, bool is_continue, char stop_char)
 {
 	char			*dst;
 	static char		*prev_str = NULL;
@@ -61,9 +61,4 @@ char	*get_next_line2(int fd, bool is_continue, char stop_char)
 		close(fd);
 	free(dyn_str.str);
 	return (dst);
-}
-
-char	*get_next_line(int fd)
-{
-	return (get_next_line2(fd, true, '\n'));
 }
