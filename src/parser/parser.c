@@ -174,3 +174,19 @@ size_t	parse_words(const char *str, int fd)
 	}
 	return (y);
 }
+
+/*
+To Do List
+1.	get i-th argument
+2.	dquote >
+
+Command
+1.	cat
+2.	head
+3.	echo
+4.	pwd
+5.	env
+6.	cd
+7.	exit (with return value)
+
+*/

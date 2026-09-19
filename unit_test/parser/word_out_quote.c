@@ -83,7 +83,7 @@ int	main(void)
 	i = 0;
 	while (i < max_score)
     {
-		gnl_output = get_next_line(output, true);
+		gnl_output = get_next_line(output, true, '\n');
         if (is_2_str_same(str_2[i], gnl_output, f_strlen(str_2[i]), false) == true || f_strlen(str_2[i]) == 0)
             score += 1;
         else
@@ -95,7 +95,7 @@ int	main(void)
         free(gnl_output);
         i += 1;
     }
-    get_next_line(output, false);
+    free(get_next_line(output, false, '\n'));
     close(output);
 	write_total_score(length_score, max_score);
 	write_total_score(score, max_score);

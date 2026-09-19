@@ -57,13 +57,9 @@ bool	is_2_str_same(const char *a, const char *b,
 {
 	size_t	i;
 
-	if (a == NULL && b == NULL)
+	if ((a == NULL || *a == '\0') && (b == NULL || *b == '\0'))
 		return (true);
-	if (a == NULL || b == NULL)
-		return (false);
-	if (*a == '\0' && *b == '\0')
-		return (true);
-	if (*a == '\0' || *b == '\0')
+	if ((a == NULL || *a == '\0') || (b == NULL || *b == '\0'))
 		return (false);
 	i = 0;
 	while (a[i] != '\0' && i < length)

@@ -3,7 +3,7 @@
 # *** command ***
 
 CC = cc -Wall -Wextra -Werror
-BUFFER_SIZE = 42
+BUFFER_SIZE = 10000000
 
 #-----------------------------------------------------------------------------------------------
 # https://stackoverflow.com/questions/9488256/use-directory-path-of-target-in-list-of-prerequisites-in-makefile

@@ -62,16 +62,16 @@ int	main(void)
 	i = 0;
 	while (i < max_score)
     {
-		gnl_output = get_next_line(output, true);
-		gnl_expect = get_next_line(expect, true);
+		gnl_output = get_next_line(output, true, '\n');
+		gnl_expect = get_next_line(expect, true, '\n');
         if (is_2_str_same(gnl_expect, gnl_output, f_strlen(gnl_expect), false) == true)
             score += 1;
         free(gnl_expect);
         free(gnl_output);
         i += 1;
     }
-    get_next_line(output, false);
-    get_next_line(expect, false);
+    get_next_line(output, false, '\n');
+    get_next_line(expect, false, '\n');
     close(output);
     close(expect);
 	write_total_score(score, max_score);

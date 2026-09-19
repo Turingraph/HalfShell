@@ -22,11 +22,12 @@
 #  define BUFFER_SIZE 42
 # endif
 
-/*
-Note that get_next_line.h is intended to be utilized by
-1.	src/debug/debug/
-2.	src/input/load/
-*/
+typedef struct t_dynamic_str
+{
+	size_t	length;
+	size_t	capacity;
+	char	*str;
+}	t_dynamic_str;
 
 typedef enum t_file_mode
 {
@@ -34,10 +35,23 @@ typedef enum t_file_mode
 	APPEND = 'a',
 }	t_file_mode;
 
-// public.c
+// dynamic_str.c
 
-int		open_dir_file(const char *file_name, const char *dir, t_file_mode mode);
-char	*get_next_line(int fd, bool is_continue);
-char	*concat_string(const char *str_1, const char *str_2);
+char			*clone_string(size_t length, const char *src);
+t_dynamic_str	init_dynamic_str(size_t length);
+bool			push_dynamic_str(t_dynamic_str *dst, char src);
+void			concat_dynamic_str(t_dynamic_str *dst, const char *src);
+size_t			index_a_in_str(const char *src, char a);
+
+// get_next_line.c
+
+void			fetch_text(int fd, t_dynamic_str *dst, size_t buffer_length);
+char			*get_next_line(int fd);
+// char			*get_next_line(int fd, bool is_continue, char stop_char);
+
+// open_dir_file.c
+
+int				open_dir_file(const char *file_name,
+					const char *dir, t_file_mode file_mode);
 
 #endif
