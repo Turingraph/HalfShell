@@ -1,5 +1,20 @@
 #include "get_next_line.h"
 
+/**
+ * Open a file using an optional directory and file name.
+ * Uses whichever path argument is provided when the other is NULL.
+ * Concatenates both paths when both are provided.
+ *
+ * time/space: O(n) / O(n)
+ *
+ * status: public api
+ *
+ * @param file_name name or path of the file to open
+ * @param dir directory or path prefix of the file
+ * @param file_mode file access mode
+ *
+ * @return file descriptor on success, or -1 on failure
+ */
 int	open_dir_file(const char *file_name, const char *dir, t_file_mode file_mode)
 {
 	t_dynamic_str	file;

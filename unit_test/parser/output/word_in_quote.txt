@@ -14,19 +14,3 @@ echo Welcome to the Internet >>
 
 '''''''''''''''''''''
 Joooooooooooooooooooooooooooooooooooo Jooooooooooooooooooooooooo
-echo hello world
-echo hello                       world       
-echo hello                 world
-pwd """
-pwd """ """ """ """
-Johan """ Yoasobi
-Jammmmmmmmmmm mmmmm
-Jammmmmmmmmmm mm
-echo Welcome to the Internet
-echo Welcome to the Internet >> google
-echo Welcome to the I
-echo Welcome to the Internet >>'           google
-echo Welcome to the Internet >>
-
-'''''''''''''''''''''
-Joooooooooooooooooooooooooooooooooooo Jooooooooooooooooooooooooo
