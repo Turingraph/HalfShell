@@ -51,3 +51,13 @@ void	command_pwd(const char *command)
 		write(1, "\n", 1);
 	}
 }
+
+/*
+Command list
+1.	echo
+2.	cd
+3.	pwd
+4.	head
+5.	tail
+6.	cat
+*/

@@ -45,7 +45,7 @@ int	word_in_quote(const char *str, int fd)
 		i += 1;
 	}
 	if (str[i] == '\0')
-		return (-1 * (i + 1));
+		return (-1 * i);
 	return (i);
 }
 
@@ -125,7 +125,10 @@ bool	parse_word_unit(const char *str, size_t *i, int fd)
 	{
 		word_length = word_in_quote(str + *i, fd);
 		if (word_length < 0)
+		{
+			*i += (size_t)(-1 * word_length);
 			return (false);
+		}
 		*i += (size_t)word_length + 1;
 	}
 	else if (is_stop_char(str[*i]) == false)
@@ -142,6 +145,12 @@ bool	parse_word_unit(const char *str, size_t *i, int fd)
  * Parsing stops when no more word units can be consumed or when an
  * unclosed quoted word is encountered.
  *
+ * The return value depends on output_mode:
+ * - ALL_CHARS returns the total number of characters that consumed by this function.
+ * - ALL_ARGS returns the number of successfully parsed word units
+ * (a.k.a. number of all arguments).
+ * - ITH_ARG returns the character offset of the word at first_y.
+ * 
  * time/space: O(n) / O(1)
  *
  * status: public api
@@ -149,10 +158,13 @@ bool	parse_word_unit(const char *str, size_t *i, int fd)
  * @param str string to parse
  * @param fd file descriptor to write the parsed words to,
  * or -1 to disable output
+ * @param first_y the first group of string that is displayed.
+ * @param output_mode determines what value is returned
  *
- * @return number of successfully parsed word units
+ * @return number of number of all characters, number of all arguments,
+ * or offset of the word at first_y depending on output_mode
  */
-size_t	parse_words(const char *str, int fd)
+size_t	parse_words(const char *str, int fd, size_t first_y, t_arg_index output_mode)
 {
 	size_t	y;
 	size_t	i;
@@ -169,7 +181,12 @@ size_t	parse_words(const char *str, int fd)
 			i += 1;
 		while (str[i] == '\"' && str[i + 1] == '\"')
 			i += 1;
-		continue_loop = parse_word_unit(str, &i, fd);
+		if (y == first_y && output_mode == ITH_ARG)
+			return (i);
+		if (y < first_y)
+			continue_loop = parse_word_unit(str, &i, -2);
+		else
+			continue_loop = parse_word_unit(str, &i, fd);
 		if (continue_loop == true)
 		{
 			if (fd > -1)
@@ -177,9 +194,19 @@ size_t	parse_words(const char *str, int fd)
 			y += 1;
 		}
 	}
-	return (y);
+	if (output_mode == ALL_ARGS)
+		return (y);
+	return (i);
 }
 
+typedef enum t_arg_index
+{
+	ALL_CHARS,
+	ALL_ARGS,
+	ITH_ARG
+}	t_arg_index;
+
+// Write comment about the 4th argument of parse_words.
 /*
 To Do List
 1.	get i-th argument
