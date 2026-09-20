@@ -12,13 +12,15 @@ CC = cc -Wall -Wextra -Werror
 # *** library ***
 
 # I will have to fix this lines.
-LIBRARY = $(patsubst %, lib/%.a, string get_next_line parser)
+LIBRARY = $(patsubst %, lib/%.a, string get_next_line parser command)
 SRC_string = $(wildcard string/*.c)
 OBJ_string = $(patsubst %.c, obj/%.o, $(SRC_string))
 SRC_get_next_line = $(wildcard get_next_line/*.c)
 OBJ_get_next_line = $(patsubst %.c, obj/%.o, $(SRC_get_next_line))
 SRC_parser = $(wildcard parser/*.c)
 OBJ_parser = $(patsubst %.c, obj/%.o, $(SRC_parser)) $(OBJ_string)
+SRC_command = $(wildcard command/*.c)
+OBJ_command = $(patsubst %.c, obj/%.o, $(SRC_command)) $(OBJ_parser) $(OBJ_get_next_line)
 
 #-----------------------------------------------------------------------------------------------
 # *** create library ***

@@ -118,8 +118,6 @@ bool	parse_word_unit(const char *str, size_t *i, int fd)
 {
 	int		word_length;
 
-	while (str[*i] == ' ')
-		*i += 1;
 	if (str[*i] != '\0' && is_a_in_str(str[*i], "\'\"") == true
 		&& str[*i] != str[*i + 1])
 	{
@@ -181,6 +179,8 @@ size_t	parse_words(const char *str, int fd, size_t first_y, t_arg_index output_m
 			i += 1;
 		while (str[i] == '\"' && str[i + 1] == '\"')
 			i += 1;
+		while (str[i] == ' ')
+			i += 1;
 		if (y == first_y && output_mode == ITH_ARG)
 			return (i);
 		if (y < first_y)
@@ -189,7 +189,8 @@ size_t	parse_words(const char *str, int fd, size_t first_y, t_arg_index output_m
 			continue_loop = parse_word_unit(str, &i, fd);
 		if (continue_loop == true)
 		{
-			if (fd > -1)
+			if (fd > -1 && y >= first_y
+				&& is_stop_char(str[i]) == false)
 				write(fd, " ", 1);
 			y += 1;
 		}
@@ -198,13 +199,6 @@ size_t	parse_words(const char *str, int fd, size_t first_y, t_arg_index output_m
 		return (y);
 	return (i);
 }
-
-typedef enum t_arg_index
-{
-	ALL_CHARS,
-	ALL_ARGS,
-	ITH_ARG
-}	t_arg_index;
 
 // Write comment about the 4th argument of parse_words.
 /*

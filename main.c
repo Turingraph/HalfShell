@@ -21,11 +21,9 @@ int	main(void)
 	while (activate == 1)
 	{
 		command = readline("minishell $ ");
-		if (command == NULL || is_2_str_meansame("exit", command) == true)
+		if (is_valid_command(command, "exit", 0) == true)
 			activate = 0;
-		command_cd(command);
-		command_echo(command);
-		command_pwd(command);
+		command_echo(command, 1);
 		free(command);
 	}
 	return (0);

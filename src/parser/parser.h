@@ -30,4 +30,9 @@ bool	parse_word_unit(const char *str, size_t *i, int fd);
 size_t	parse_words(const char *str, int fd, size_t first_y,
 			t_arg_index output_mode);
 
+// utils.c
+
+bool	is_valid_command(const char *user_command, const char *keyword,
+			size_t option_index);
+
 #endif
