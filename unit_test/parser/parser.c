@@ -16,8 +16,30 @@ int	main(void)
 {
 	size_t						        i;
 	size_t						        score;
-	size_t						        max_score = 18;
-	char    *str[] = {
+	size_t						        max_score = 20;
+	char    *expect_str[] = {
+        "echo hello world",                                  // 0
+        "echo hello world",                                  // 1
+        "echo hello                       world       ",     // 2
+        "echo hello         world",                          // 3
+        "pwd \"\"\"",                                        // 4    
+        "pwd \"\"\" \"\"\" \"\"\" \"\"\"",                   // 5
+        "Johan \"\"\" Yoasobi",                              // 6
+        "Jammmmmmmmmmm mmmmm",                               // 7
+        "echo Welcome to the Internet",                      // 8
+        "echo Welcome to the Internet >>\' google",          // 9
+        "echo Welcome to the Internet >>\'           google",// 10
+        "echo Welcome to the Internet >> google",            // 11
+        "          ",                                                  // 12    
+        "",                                                  // 13    
+        "Joooooooooooooooooooooooooooooooooooo Jooooooooooooooooooooooooo",
+        "                  ",
+        "exit exit             ehehehe",
+        "infinite monkey typing this keyboard without using LLM and ironically that human are ape with large biomass compared to most mammals.",
+        "infinite               monkey typing this keyboard without using LLM and ironically that human are ape with large biomass compared to most mammals.",
+        "infinite monkey typing this keyboard without using LLM and ironically that human are ape with large biomass compared to most mammals."
+    };
+	char    *input_str[] = {
         "echo hello world",
         "               echo       hello world",
         "echo \'hello                       world       \'",
@@ -35,45 +57,43 @@ int	main(void)
         "                           Joooooooooooooooooooooooooooooooooooo Jooooooooooooooooooooooooo       ",
         "          \'                  ",
         "             \'exit exit\'             \"            ehehehe\"",
-        "          infinite monkey typing this keyboard without using LLM and ironically that human are ape with large biomass compared to most mammals. "
-        "          \"infinite               monkey\" typing this keyboard without using LLM and ironically that human are ape with large biomass compared to most mammals. "
+        "          infinite monkey typing this keyboard without using LLM and ironically that human are ape with large biomass compared to most mammals. ",
+        "          \"infinite               monkey\" typing this keyboard without using LLM and ironically that human are ape with large biomass compared to most mammals. ",
         "          infinite               monkey typing this keyboard without using LLM and ironically that human are ape with large biomass compared to most mammals. "
     };
      char    *gnl_output;
-    char    *gnl_expect;
     int     output;
-    char    *output_dir = "unit_test/parser/";
-    char    *expect_dir = "unit_test/parser/";
-    char    *file_name = "word_in_quote.txt";
-    int     expect;
+    char    *file_name = "unit_test/parser/output/parser.txt";
 
 	i = 0;
 	score = 0;
-    output = open_dir_file(file_name, output_dir, APPEND);
+    output = open_dir_file(file_name, NULL, APPEND);
 	while (i < max_score)
 	{
-        parse_words(str[i], output);
+        parse_words(input_str[i], output);
         write(output, "\n", 1);
         i += 1;
 	}
     close(output);
-    output = open_dir_file(file_name, output_dir, READ);
-    expect = open_dir_file(file_name, expect_dir, READ);
+    output = open_dir_file(file_name, NULL, READ);
 	i = 0;
 	while (i < max_score)
     {
 		gnl_output = get_next_line(output, true, '\n');
-		gnl_expect = get_next_line(expect, true, '\n');
-        if (is_2_str_same(gnl_expect, gnl_output, f_strlen(gnl_expect), false) == true)
+        if ((expect_str[i][0] == '\0' && (gnl_output[0] == '\0' || gnl_output[0] == '\n'))
+            || is_2_str_same(expect_str[i], gnl_output, f_strlen(expect_str[i]), false) == true)
             score += 1;
-        free(gnl_expect);
+        else
+        {
+            write(1, ">>> ", 4);
+            ft_putnbr_fd(i, 1, "0123456789", 1);
+            write(1, "\n", 1);
+        }
         free(gnl_output);
         i += 1;
     }
-    get_next_line(output, false, '\n');
-    get_next_line(expect, false, '\n');
+    free(get_next_line(output, false, '\n'));
     close(output);
-    close(expect);
 	write_total_score(score, max_score);
 	return (0);
 }
