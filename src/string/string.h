@@ -34,5 +34,6 @@ size_t	f_strlen(const char *str);
 bool	is_2_str_same(const char *a, const char *b,
 			size_t length, bool check_space);
 bool	is_a_in_str(char a, const char *str);
+void	*malloc_talk(size_t elem_size, const char *comment);
 
 #endif

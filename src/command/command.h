@@ -19,5 +19,7 @@
 // cd.c
 
 void	command_echo(const char *command, int fd);
+void	command_cd(const char *command, int fd);
+void	command_pwd(const char *command, int fd);
 
 #endif

@@ -24,6 +24,8 @@ int	main(void)
 		if (is_valid_command(command, "exit", 0) == true)
 			activate = 0;
 		command_echo(command, 1);
+		command_cd(command, 1);
+		command_pwd(command, 1);
 		free(command);
 	}
 	return (0);

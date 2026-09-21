@@ -117,22 +117,30 @@ size_t	word_out_quote(const char *str, int fd)
 bool	parse_word_unit(const char *str, size_t *i, int fd)
 {
 	int		word_length;
+	size_t	j;
 
-	if (str[*i] != '\0' && is_a_in_str(str[*i], "\'\"") == true
-		&& str[*i] != str[*i + 1])
+	j = 0;
+	if (i != NULL)
+		j = *i;
+	if (str[j] != '\0' && is_a_in_str(str[j], "\'\"") == true
+		&& str[j] != str[j + 1])
 	{
-		word_length = word_in_quote(str + *i, fd);
+		word_length = word_in_quote(str + j, fd);
 		if (word_length < 0)
 		{
-			*i += (size_t)(-1 * word_length);
+			j += (size_t)(-1 * word_length);
+			if (i != NULL)
+				*i = j;
 			return (false);
 		}
-		*i += (size_t)word_length + 1;
+		j += (size_t)word_length + 1;
 	}
-	else if (is_stop_char(str[*i]) == false)
-		*i += word_out_quote(str + *i, fd);
+	else if (is_stop_char(str[j]) == false)
+		j += word_out_quote(str + j, fd);
 	else
 		return (false);
+	if (i != NULL)
+		*i = j;
 	return (true);
 }
 

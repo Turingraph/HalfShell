@@ -23,33 +23,25 @@ void	command_echo(const char *command, int fd)
  * @see 
  * - https://www.geeksforgeeks.org/linux-unix/chdir-in-c-language-with-examples/
  */
+void	command_cd(const char *command, int fd)
+{
+	char	*dir;
 
-
-
-
-
-
-
-
-
-
-// void	command_echo(const char *command)
-// {
-// 	size_t	*program;
-
-// 	if (command == NULL)
-// 		return ;
-// 	program = parse_words(command, -2, 0, ITH_ARG);
-// 	if (is_2_str_same("cd ", command, 3) == true && f_strlen(command) > 3)
-// 	{
-// 		if (chdir(command + 3) != 0)
-// 		{
-// 			write(1, "cd: no such file or directory: ", 31);
-// 			write(1, command + 3, f_strlen(command + 3));
-// 			write(1, "\n", 1);
-// 		}
-// 	}
-// }
+	dir = NULL;
+	if(is_valid_command(command, "cd", 0) == true
+		&& too_many_arguments(command, 2) == false)
+	{
+		dir = clone_word_outin_quote(
+				parse_words(command, -2, 1, ITH_ARG) + command);
+		if (dir != NULL && chdir(dir) != 0)
+		{
+			write(fd, "cd: no such file or directory: ", 31);
+			write(fd, dir, f_strlen(dir));
+			write(fd, "\n", 1);
+		}
+	}
+	free(dir);
+}
 
 /**
  * Execute the pwd command without any option.
@@ -63,17 +55,17 @@ void	command_echo(const char *command, int fd)
  * how-to-get-the-current-directory-in-a-c-program for more
  * details about how to implement this function.
  */
-// void	command_pwd(const char *command)
-// {
-// 	char	path[255];
+void	command_pwd(const char *command, int fd)
+{
+	char	path[255];
 
-// 	if (is_1st_str_same("pwd", command) == true)
-// 	{
-// 		getcwd(path, sizeof(path));
-// 		write(1, path, f_strlen(path));
-// 		write(1, "\n", 1);
-// 	}
-// }
+	if (is_valid_command(command, "pwd", 0) == true)
+	{
+		getcwd(path, sizeof(path));
+		write(fd, path, f_strlen(path));
+		write(fd, "\n", 1);
+	}
+}
 
 /*
 Command list
