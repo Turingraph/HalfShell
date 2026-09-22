@@ -25,5 +25,6 @@ void	command_pwd(const char *command, int fd);
 // fetch.c
 
 void	command_head(const char *command, int fd);
+void	command_tail(const char *command, int fd);
 
 #endif

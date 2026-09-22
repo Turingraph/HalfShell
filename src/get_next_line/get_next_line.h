@@ -46,6 +46,8 @@ size_t			index_a_in_str(const char *src, char a);
 void			write_fetch_head(int input_fd, int first_n_line,
 					int output_fd, bool is_new_line);
 void			write_fetch_cat(int input_fd, int output_fd);
+void			write_fetch_tail(int input_fd, int last_n_line,
+					int output_fd, bool is_new_line);
 
 // get_next_line.c
 

@@ -27,6 +27,7 @@ int	main(void)
 		command_cd(command, 1);
 		command_pwd(command, 1);
 		command_head(command, 1);
+		command_tail(command, 1);
 		free(command);
 	}
 	return (0);
