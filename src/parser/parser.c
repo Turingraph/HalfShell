@@ -44,8 +44,8 @@ int	word_in_quote(const char *str, int fd)
 			write(fd, &a, 1);
 		i += 1;
 	}
-	if (str[i] == '\0')
-		return (-1 * i);
+	if (str[i] != str[0])
+		i *= -1;
 	return (i);
 }
 

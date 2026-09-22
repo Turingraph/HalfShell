@@ -67,3 +67,37 @@ bool	too_many_arguments(const char *command, size_t limit)
 	}
 	return (false);
 }
+
+/**
+ * status: Always return false when it work unexpectedly.
+ * No Valgrind reported memory leak.
+ */
+bool	is_end_with_newline(const char *user_command)
+{
+	size_t	count_args;
+	size_t	start;
+	int		y;
+
+	count_args = parse_words(user_command, -2, 0, ALL_ARGS);
+	if (count_args == 0)
+		return (false);
+	write(1, "--- ", 4);
+	ft_putnbr_fd(count_args, 1, "0123456789", 1);
+	write(1, "\n", 1);
+	start = parse_words(user_command, -2, count_args - 1, ITH_ARG);
+	if (user_command[start] == '\'' || user_command[start] == '\"')
+	{
+		y = (int)word_in_quote(start + user_command, -2);
+		write(1, "+++ ", 4);
+		write(1, start + user_command, f_strlen(start + user_command));
+		write(1, "#\n\n", 3);
+		if (y <= 0)
+		{
+			// write(1, "\nYorushika\n", 11);
+			return (true);
+		}
+		// write(1, "\nNujabes\n", 9);
+		return (false);
+	}
+	return (false);
+}

@@ -42,5 +42,6 @@ bool	is_valid_command(const char *user_command, const char *keyword,
 			size_t option_index);
 int		command_to_integer(const char *user_command, size_t option_index, bool *is_int);
 bool	too_many_arguments(const char *command, size_t limit);
+bool	is_end_with_newline(const char *user_command);
 
 #endif
