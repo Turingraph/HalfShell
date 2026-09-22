@@ -109,3 +109,25 @@ void	command_head(const char *command, int fd)
 	else
 		scommand_head_loop(command, fd, count_line, first_file);
 }
+
+void	command_cat(const char *command, int fd)
+{
+	size_t	i;
+	char	*file_name;
+	size_t	count_args;
+	int		input_fd;
+
+	if (is_valid_command(command, "cat", 0) == false)
+		return ;
+	i = 1;
+	count_args = parse_words(command, -2, 0, ALL_ARGS);
+	while (i < count_args)
+	{
+		file_name = clone_word_outin_quote(parse_words(command, -2, i, ITH_ARG) + command);
+		input_fd = open_dir_file(file_name, NULL, READ);
+		write_fetch_cat(input_fd, fd);
+		free(file_name);
+		close(input_fd);
+		i += 1;
+	}
+}
