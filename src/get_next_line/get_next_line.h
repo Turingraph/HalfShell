@@ -13,10 +13,8 @@
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# include <unistd.h>
-# include <stdlib.h>
+# include "../string/string.h"
 # include <fcntl.h>
-# include <stdbool.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
@@ -52,5 +50,8 @@ char			*get_next_line(int fd, bool is_continue, char stop_char);
 
 int				open_dir_file(const char *file_name,
 					const char *dir, t_file_mode file_mode);
+void			write_fetch_head(int input_fd, int first_n_line,
+					int output_fd, bool is_new_line);
+void			write_fetch_cat(int input_fd, int output_fd);
 
 #endif

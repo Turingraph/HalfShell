@@ -26,6 +26,7 @@ int	main(void)
 		command_echo(command, 1);
 		command_cd(command, 1);
 		command_pwd(command, 1);
+		command_head(command, 1);
 		free(command);
 	}
 	return (0);
@@ -49,5 +50,4 @@ Thing not to do (yet)
 3.	?
 
 keyword
-1.	heredoc
-*/
+1.	heredoc*/

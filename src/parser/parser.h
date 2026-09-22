@@ -25,6 +25,7 @@ typedef enum t_arg_index
 // clone.c
 
 char	*clone_word_outin_quote(const char *str);
+int		word_outin_quote(const char *str, int fd);
 
 // parser.c
 
@@ -39,6 +40,7 @@ bool	is_stop_char(char a);
 
 bool	is_valid_command(const char *user_command, const char *keyword,
 			size_t option_index);
+int		command_to_integer(const char *user_command, size_t option_index, bool *is_int);
 bool	too_many_arguments(const char *command, size_t limit);
 
 #endif

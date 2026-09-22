@@ -61,3 +61,15 @@ char	*clone_word_outin_quote(const char *str)
 		return (clone_word_in_quote(str));
 	return (clone_word_out_quote(str));
 }
+
+int	word_outin_quote(const char *str, int fd)
+{
+	int	length_out;
+	int	length_in;
+
+	length_in = word_in_quote(str, -2);
+	length_out = word_out_quote(str, -2);
+	if (length_in > length_out)
+		return (word_in_quote(str, fd));
+	return (word_out_quote(str, fd));
+}

@@ -22,6 +22,35 @@ bool	is_valid_command(const char *user_command, const char *keyword, size_t opti
 	return (true);
 }
 
+int	command_to_integer(const char *user_command, size_t option_index, bool *is_int)
+{
+	size_t	start;
+	int		stop;
+
+	if (user_command == NULL)
+	{
+		if (is_int != NULL)
+			*is_int = false;
+		return (-1);
+	}
+	stop = 0;
+	start = parse_words(user_command, -2, option_index, ITH_ARG);
+	if (user_command[start] == '\'' || user_command[start] == '\"')
+	{
+		stop = word_in_quote(user_command + start, -2);
+		start += 1;
+	}
+	else if (is_a_in_str(user_command[start], "0123456789-") == true)
+		stop = (int)word_out_quote(user_command + start, -2);
+	else
+	{
+		if (is_int != NULL)
+			*is_int = false;
+		return (-1);
+	}
+	return (f_atoi(user_command + start, is_int, "0123456789", stop));
+}
+
 bool	too_many_arguments(const char *command, size_t limit)
 {
 	size_t	arg_counts;

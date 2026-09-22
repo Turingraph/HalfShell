@@ -36,3 +36,55 @@ int	open_dir_file(const char *file_name, const char *dir, t_file_mode file_mode)
 	free(file.str);
 	return (dst);
 }
+
+void	write_fetch_head(int input_fd, int first_n_line, int output_fd, bool is_new_line)
+{
+	size_t			i;
+	size_t			new_line;
+	t_dynamic_str	dst;
+
+	if (input_fd < -1 || first_n_line == 0)
+		return ;
+	dst = init_dynamic_str(1);
+	if (dst.str == NULL)
+		return ;
+	fetch_text(input_fd, &dst, BUFFER_SIZE);
+	if (dst.str == NULL)
+		return ;
+	if (first_n_line < 0)
+	{
+		first_n_line = (int)how_many_a_in_str(dst.str, '\n') + first_n_line;
+		if (dst.str[dst.length - 1] != '\n')
+			first_n_line += 1;
+	}
+	new_line = 0;
+	i = 0;
+	while ((int)new_line < first_n_line && i < dst.length)
+	{
+		if (dst.str[i] == '\n')
+			new_line += 1;
+		write(output_fd, dst.str + i, 1);
+		i += 1;
+	}
+	if (i > 1 && dst.str[i - 1] != '\n' && is_new_line == true)
+		write(output_fd, "\n", 1);
+	free(dst.str);
+}
+
+void	write_fetch_cat(int input_fd, int output_fd)
+{
+	t_dynamic_str	dst;
+
+	if (input_fd < -1)
+		return ;
+	dst = init_dynamic_str(1);
+	if (dst.str == NULL)
+		return ;
+	fetch_text(input_fd, &dst, BUFFER_SIZE);
+	if (dst.str == NULL)
+		return ;
+	write(output_fd, dst.str, f_strlen(dst.str));
+	free(dst.str);
+}
+
+// void	write_fetch_tail(int input_fd, size_t last_n_line, int output_fd)

@@ -183,11 +183,8 @@ size_t	parse_words(const char *str, int fd, size_t first_y, t_arg_index output_m
 	i = 0;
 	while (continue_loop == true)
 	{
-		while (str[i] == '\'' && str[i + 1] == '\'')
-			i += 1;
-		while (str[i] == '\"' && str[i + 1] == '\"')
-			i += 1;
-		while (str[i] == ' ')
+		while ((str[i] == '\'' && str[i + 1] == '\'')
+			|| (str[i] == '\"' && str[i + 1] == '\"') || str[i] == ' ')
 			i += 1;
 		if (y == first_y && output_mode == ITH_ARG)
 			return (i);
@@ -197,8 +194,7 @@ size_t	parse_words(const char *str, int fd, size_t first_y, t_arg_index output_m
 			continue_loop = parse_word_unit(str, &i, fd);
 		if (continue_loop == true)
 		{
-			if (fd > -1 && y >= first_y
-				&& is_stop_char(str[i]) == false)
+			if (fd > -1 && y >= first_y && is_stop_char(str[i]) == false)
 				write(fd, " ", 1);
 			y += 1;
 		}

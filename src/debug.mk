@@ -17,7 +17,7 @@ LIBRARY = $(patsubst %, lib/%.a, get_next_line parser string)
 SRC_string = $(wildcard string/*.c)
 OBJ_string = $(patsubst %.c, obj/%.o, $(SRC_string))
 SRC_get_next_line = $(wildcard get_next_line/*.c)
-OBJ_get_next_line = $(patsubst %.c, obj/%.o, $(SRC_get_next_line))
+OBJ_get_next_line = $(patsubst %.c, obj/%.o, $(SRC_get_next_line)) $(OBJ_string)
 SRC_parser = $(wildcard parser/*.c)
 OBJ_parser = $(patsubst %.c, obj/%.o, $(SRC_parser)) $(OBJ_string)
 

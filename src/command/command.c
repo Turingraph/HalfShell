@@ -73,10 +73,9 @@ Command list
 2.	cd
 3.	pwd
 4.	head
-5.	tail
-6.	cat
-7.	export
-8.	unset
-9.	env
-10.	exit
+5.	cat
+6.	export
+7.	unset
+8.	env
+9.	exit
 */
