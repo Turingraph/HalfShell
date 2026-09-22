@@ -49,7 +49,7 @@ void	fetch_text(int fd, t_dynamic_str *dst, size_t buffer_length)
 	bool	continue_line;
 
 	continue_line = true;
-	while (continue_line == true && dst != NULL && dst->str != NULL)
+	while (fd > -2 && continue_line == true && dst != NULL && dst->str != NULL)
 	{
 		buff = clone_string(sizeof(char) * buffer_length, NULL);
 		if (buff == NULL)

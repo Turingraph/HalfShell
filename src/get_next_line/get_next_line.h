@@ -41,6 +41,12 @@ bool			push_dynamic_str(t_dynamic_str *dst, char src);
 void			concat_dynamic_str(t_dynamic_str *dst, const char *src);
 size_t			index_a_in_str(const char *src, char a);
 
+// fetch.c
+
+void			write_fetch_head(int input_fd, int first_n_line,
+					int output_fd, bool is_new_line);
+void			write_fetch_cat(int input_fd, int output_fd);
+
 // get_next_line.c
 
 void			fetch_text(int fd, t_dynamic_str *dst, size_t buffer_length);
@@ -50,8 +56,5 @@ char			*get_next_line(int fd, bool is_continue, char stop_char);
 
 int				open_dir_file(const char *file_name,
 					const char *dir, t_file_mode file_mode);
-void			write_fetch_head(int input_fd, int first_n_line,
-					int output_fd, bool is_new_line);
-void			write_fetch_cat(int input_fd, int output_fd);
 
 #endif

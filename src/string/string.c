@@ -91,7 +91,7 @@ size_t	how_many_a_in_str(const char *str, char a)
 	size_t	y;
 
 	if (str == NULL || str[0] == '\0')
-		return (false);
+		return (0);
 	y = 0;
 	i = 0;
 	while (str[i] != '\0')
