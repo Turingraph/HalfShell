@@ -6,11 +6,37 @@
 /*   By: phsottat <phsottat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 14:19:21 by phsottat          #+#    #+#             */
-/*   Updated: 2026/09/15 18:53:13 by phsottat         ###   ########.fr       */
+/*   Updated: 2026/09/23 19:09:26 by phsottat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/halfshell.h"
+
+void	new_line_shell(char **user_command)
+{
+	t_dynamic_str	buff;
+	int				activate;
+	char			*command;
+
+	activate = 1;
+	if (user_command == NULL || *user_command == NULL)
+		return ;
+	buff = init_dynamic_str(1);
+	if (buff.str == NULL)
+		return ;
+	concat_dynamic_str(&buff, (const char *)*user_command);
+	free(*user_command);
+	while (activate == 1)
+	{
+		command = readline("> ");
+		concat_dynamic_str(&buff, "\n");
+		concat_dynamic_str(&buff, (const char *)command);
+		free(command);
+		*user_command = buff.str;
+		if (is_end_with_newline(*user_command) == false)
+			activate = 0;
+	}
+}
 
 int	main(void)
 {
@@ -23,6 +49,8 @@ int	main(void)
 		command = readline("minishell $ ");
 		if (is_valid_command(command, "exit", 0) == true)
 			activate = 0;
+		else if (is_end_with_newline(command) == true)
+			new_line_shell(&command);
 		command_echo(command, 1);
 		command_cd(command, 1);
 		command_pwd(command, 1);

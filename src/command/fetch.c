@@ -95,7 +95,7 @@ void	command_head(const char *command, int fd)
 	count_line = 10;
 	if (is_valid_command(command, "head", 0) == false)
 		return ;
-	if(is_valid_command(command, "-n", 1) == true)
+	if (is_valid_command(command, "-n", 1) == true)
 	{
 		first_file = 3;
 		count_line = command_to_integer(command, 2, &is_int);
