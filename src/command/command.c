@@ -31,7 +31,7 @@ void	command_cd(const char *command, int fd)
 	if(is_valid_command(command, "cd", 0) == true
 		&& too_many_arguments(command, 2) == false)
 	{
-		dir = clone_word_outin_quote(
+		dir = clone_outin_quote(
 				parse_words(command, -2, 1, ITH_ARG) + command);
 		if (dir != NULL && chdir(dir) != 0)
 		{

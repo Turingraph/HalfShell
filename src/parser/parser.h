@@ -6,7 +6,7 @@
 /*   By: phsottat <phsottat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/14 17:45:32 by phsottat          #+#    #+#             */
-/*   Updated: 2026/09/23 13:51:22 by phsottat         ###   ########.fr       */
+/*   Updated: 2026/09/23 16:28:45 by phsottat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef enum t_arg_index
 
 // clone.c
 
-char	*clone_word_outin_quote(const char *str);
+char	*clone_outin_quote(const char *str);
 int		word_outin_quote(const char *str, int fd);
 
 // parser.c
