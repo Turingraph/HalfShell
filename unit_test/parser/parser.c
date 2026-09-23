@@ -6,7 +6,7 @@
 /*   By: phsottat <phsottat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/17 12:58:02 by phsottat          #+#    #+#             */
-/*   Updated: 2026/09/17 16:35:56 by phsottat         ###   ########.fr       */
+/*   Updated: 2026/09/23 14:23:03 by phsottat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,10 @@ int	main(void)
         {
             write(1, ";;; ", 4);
             ft_putnbr_fd(i, 1, "0123456789", 1);
+            write(1, "\t", 1);
+            ft_putnbr_fd(args_expect[i], 1, "0123456789", 1);
+            write(1, "\t", 1);
+            ft_putnbr_fd(parse_words(input_str[i], -2, 0, ALL_ARGS), 1, "0123456789", 1);
             write(1, "\n", 1);
         }
         answer_char = parse_words(input_str[i], -2, 0, ALL_CHARS);

@@ -6,7 +6,7 @@
 /*   By: phsottat <phsottat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/14 17:44:48 by phsottat          #+#    #+#             */
-/*   Updated: 2026/09/17 19:12:05 by phsottat         ###   ########.fr       */
+/*   Updated: 2026/09/23 15:55:32 by phsottat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,8 @@ bool	parse_word_unit(const char *str, size_t *i, int fd)
  * unclosed quoted word is encountered.
  *
  * The return value depends on output_mode:
- * - ALL_CHARS returns the total number of characters that consumed by this function.
+ * - ALL_CHARS returns the total number of
+ * characters that consumed by this function.
  * - ALL_ARGS returns the number of successfully parsed word units
  * (a.k.a. number of all arguments).
  * - ITH_ARG returns the character offset of the word at first_y.
@@ -183,9 +184,15 @@ size_t	parse_words(const char *str, int fd, size_t first_y, t_arg_index output_m
 	i = 0;
 	while (continue_loop == true)
 	{
-		while ((str[i] == '\'' && str[i + 1] == '\'')
+		while ((str[i] == '\'' && str[i + 1] == '\'') || str[i] == '\t'
 			|| (str[i] == '\"' && str[i + 1] == '\"') || str[i] == ' ')
-			i += 1;
+		{
+			if ((str[i] == '\'' && str[i + 1] == '\'')
+					|| (str[i] == '\"' && str[i + 1] == '\"'))
+				i += 2;
+			else
+				i += 1;
+		}
 		if (y == first_y && output_mode == ITH_ARG)
 			return (i);
 		if (y < first_y)

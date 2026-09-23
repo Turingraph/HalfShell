@@ -6,7 +6,7 @@
 /*   By: phsottat <phsottat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/14 17:45:32 by phsottat          #+#    #+#             */
-/*   Updated: 2026/09/17 18:27:00 by phsottat         ###   ########.fr       */
+/*   Updated: 2026/09/23 13:51:22 by phsottat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ bool	is_stop_char(char a);
 
 bool	is_valid_command(const char *user_command, const char *keyword,
 			size_t option_index);
-int		command_to_integer(const char *user_command, size_t option_index, bool *is_int);
+int		command_to_integer(const char *user_command, size_t option_index,
+			bool *is_int);
 bool	too_many_arguments(const char *command, size_t limit);
 bool	is_end_with_newline(const char *user_command);
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   is_end_with_newline_false.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phsottat <phsottat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/17 12:58:02 by phsottat          #+#    #+#             */
-/*   Updated: 2026/09/17 16:35:56 by phsottat         ###   ########.fr       */
+/*   Updated: 2026/09/23 15:57:19 by phsottat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,26 @@ int	main(void)
 	size_t						        score;
 	size_t						        max_score = 20;
 	char    *input_str[] = {
-        "echo hello world",
-        "               echo       hello world",
-        "echo \'hello                       world       \'",
-        "\'echo\' \'hello        \'        world",
-        "        pwd \'\"\"\"\'",
-        "        pwd \'\"\"\"\'       \'\"\"\"\'            \'\"\"\"\'       \'\"\"\"\'",
-        "Johan                 \'\"\"\"\'        Yoasobi",
-        "Jammmmmmmmmmm                            \"mmmmm\"",
-        "echo \"Welcome to the Internet\"                   >>           google",
-        "echo \"Welcome to the Internet\"                  \">>\'\"           google",
-        "echo \"Welcome to the Internet\"                  \">>\'           google",
-        "echo \"Welcome to the Internet\"                  \'>>\'           google",
-        "         \'          ",
-        "\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'",
-        "                           Joooooooooooooooooooooooooooooooooooo Jooooooooooooooooooooooooo       ",
-        "          \'                  ",
-        "             \'exit exit\'             \"            ehehehe\"",
-        "          infinite monkey typing this keyboard without using LLM and ironically that human are ape with large biomass compared to most mammals. ",
-        "          \"infinite               monkey\" typing this keyboard without using LLM and ironically that human are ape with large biomass compared to most mammals. ",
-        "          infinite               monkey typing this keyboard without using LLM and ironically that human are ape with large biomass compared to most mammals. "
+    /* 00 */    "echo hello world",
+    /* 01 */    "               echo       hello world",
+    /* 02 */    "echo \'hello                       world       \'",
+    /* 03 */    "\'echo\' \'hello        \'        world",
+    /* 04 */    "        pwd \'\"\"\"\'",
+    /* 05 */    "        pwd \'\"\"\"\'       \'\"\"\"\'            \'\"\"\"\'       \'\"\"\"\'",
+    /* 06 */    "Johan                 \'\"\"\"\'        Yoasobi",
+    /* 07 */    "Jammmmmmmmmmm                            \"mmmmm\"",
+    /* 08 */    "echo \"Welcome to the Internet\"                   >>           google",
+    /* 09 */    "echo \"Welcome to the Internet\"                  \">>\'\"           google",
+    /* 10 */    "echo \"Welcome to the Internet\"            \"      \">>           google",
+    /* 11 */    "echo \"Welcome to the Internet\"                  \'>>\'           google",
+    /* 12 */    "         \'   \"  \'     ",
+    /* 13 */    "\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\"\"",
+    /* 14 */    "                           Joooooooooooooooooooooooooooooooooooo Jooooooooooooooooooooooooo       ",
+    /* 15 */    "\'          \'                  ",
+    /* 16 */    "             \'exit exit\'             \"            ehehehe\"",
+    /* 17 */    "          infinite monkey typing this keyboard without using LLM and ironically that human are ape with large biomass compared to most mammals. ",
+    /* 18 */    "          \"infinite               monkey\" typing this keyboard without using LLM and ironically that human are ape with large biomass compared to most mammals. ",
+    /* 19 */    "          infinite               monkey typing this keyboard without using LLM and ironically that human are ape with large biomass compared to most mammals. "
     };
 
     i = 0;
